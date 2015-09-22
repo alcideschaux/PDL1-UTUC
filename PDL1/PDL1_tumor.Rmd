@@ -1,7 +1,9 @@
 ---
 title: "PDL1 expression in tumor cells of upper tract urothelial carcinoma"
 subtitle: Description of clinicopathologic and outcome features
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r Data, echo = FALSE, message = FALSE, warning = FALSE}
