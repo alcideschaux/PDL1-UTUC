@@ -1,0 +1,277 @@
+---
+title: "PDL1 expression in tumor cells of upper tract urothelial carcinoma"
+subtitle: Description of clinicopathologic and outcome features
+output: html_document
+---
+
+```{r Data, echo = FALSE, message = FALSE, warning = FALSE}
+# Establishing global options
+library(knitr)
+opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+# Loading dataset
+data <- dget("PDL1_tumor.Rd")
+# Loading libraries
+library(ggplot2)
+library(simpleR)
+library(dplyr)
+# ggplot2 theme
+gtheme <- theme(
+  plot.title = element_text(size = 18, vjust = 1.5),
+  axis.title.x = element_blank(),
+  axis.text.x = element_text(color = "black"),
+  axis.title.y = element_text(size = 16, vjust = 1.5),
+  axis.text.y = element_text(color = "black")
+)
+```
+
+```{r Description}
+# Gender
+ggplot(data, aes(x = gender, fill = gender)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(breaks = seq(0, 70, 10)) +
+  ggtitle("Distribution by patients' sex") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$gender)
+# Age
+ggplot(data, aes(x = age, fill = factor(0))) +
+  geom_histogram(color = "black", binwidth = 5) +
+  ggtitle("Distribution of patients' age") +
+  scale_x_continuous(breaks = seq(45, 90, 5)) +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.numerical(data$age)
+# Location
+ggplot(data, aes(x = location, fill = location)) +
+  geom_bar(color = "black") +
+  ggtitle("Distribution by tumor location") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$location)
+# pT
+data$pt <- factor(data$pt, levels = c("pTa", "pT1", "pT2", "pT3", "pT4"))
+ggplot(data, aes(x = pt, fill = pt)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 55), breaks = seq(0, 55, 10)) +
+  ggtitle("Distribution by pT stages") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$pt)
+# high_pt
+ggplot(data, aes(x = high_pt, fill = high_pt)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 55), breaks = seq(0, 55, 10)) +
+  ggtitle("Distribution by high pT stage (> pT2)") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$high_pt)
+# grade
+ggplot(data, aes(x = grade, fill = grade)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 55), breaks = seq(0, 55, 10)) +
+  ggtitle("Distribution by histologic grade") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$grade)
+# high_grade
+ggplot(data, aes(x = high_grade, fill = high_grade)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 85), breaks = seq(0, 85, 10)) +
+  ggtitle("Distribution by high histologic grade") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$high_grade)
+# lymph
+data_nona <- data %>% filter(!is.na(lymph))
+ggplot(data_nona, aes(x = lymph, fill = lymph)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 85), breaks = seq(0, 85, 10)) +
+  ggtitle("Distribution by lymph node metastasis") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data_nona$lymph)
+# lvi
+ggplot(data, aes(x = lvi, fill = lvi)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
+  ggtitle("Distribution by lymphovascular invasion") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$lvi)
+# BTrecurrence
+data_nona <- data %>% filter(!is.na(BTrecurrence))
+ggplot(data_nona, aes(x = BTrecurrence, fill = BTrecurrence)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 70), breaks = seq(0, 70, 10)) +
+  ggtitle("Distribution by local tumor recurrence") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data_nona$BTrecurrence)
+# progression
+data_nona <- data %>% filter(!is.na(progression))
+ggplot(data_nona, aes(x = progression, fill = progression)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 50), breaks = seq(0, 50, 10)) +
+  ggtitle("Distribution by tumor progression") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data_nona$progression)
+# fu_mo
+ggplot(data, aes(x = fu_mo, fill = factor(0))) +
+  geom_histogram(color = "black", binwidth = 12) +
+  ggtitle("Distribution of follow-up length") +
+  scale_x_continuous(breaks = seq(0, 180, 20)) +
+  scale_y_continuous(breaks = seq(0, 15, 2)) +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.numerical(data$fu_mo)
+# dod
+ggplot(data, aes(x = dod, fill = dod)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 70), breaks = seq(0, 70, 10)) +
+  ggtitle("Distribution by cancer-related death") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$dod)
+# PDL1_median
+ggplot(data, aes(x = PDL1_median, fill = factor(0))) +
+  geom_histogram(color = "black", binwidth = 5) +
+  ggtitle("Median percentage of PDL1 posivity in tumor cells") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = seq(0, 100, 10)) +
+  ylab("No. patients") +
+  gtheme +
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Median percentage")
+ggplot(data, aes(x = seq_along(PDL1_median), y = PDL1_median)) +
+  geom_ribbon(
+    aes(ymin = 0, ymax = quantile(PDL1_median, .95)), alpha = .3) +
+  geom_point(shape = 1, color = ifelse(data$PDL1_median == 0, 2, 1)) +
+  gtheme + 
+  theme(
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Patient's index") +
+  ylab("Median percentage") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = seq(0, 100, 10))
+descriptive.numerical(data$PDL1_median)
+# PDL1_max
+ggplot(data, aes(x = PDL1_max, fill = factor(0))) +
+  geom_histogram(color = "black", binwidth = 5) +
+  ggtitle("Maximum percentage of PDL1 posivity in tumor cells") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = seq(0, 100, 10)) +
+  ylab("No. patients") +
+  gtheme + 
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Maximum percentage")
+ggplot(data, aes(x = seq_along(PDL1_max), y = PDL1_max)) +
+  geom_ribbon(
+    aes(ymin = 0, ymax = quantile(PDL1_max, .95)), alpha = .3) +
+  geom_point(
+    shape = 1, color = ifelse(data$PDL1_max == 0, 2, 1)) +
+  gtheme + 
+  theme(
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Patient's index") +
+  ylab("Maximum percentage") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = seq(0, 100, 10))
+descriptive.numerical(data$PDL1_max)
+# PDL1_H_median
+ggplot(data, aes(x = PDL1_H_median, fill = factor(0))) +
+  geom_histogram(color = "black", binwidth = 10) +
+  ggtitle("Median H-score of PDL1 expression in tumor cells") +
+  scale_x_continuous(breaks = seq(0, 300, 50)) +
+  scale_y_continuous(breaks = seq(0, 100, 10)) +
+  ylab("No. patients") +
+  gtheme + 
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Median H-score")
+ggplot(data, aes(x = seq_along(PDL1_H_median), y = PDL1_H_median)) +
+  geom_ribbon(
+    aes(ymin = 0, ymax = quantile(PDL1_H_median, .95)), alpha = .3) +
+  geom_point(
+    shape = 1, color = ifelse(data$PDL1_H_median == 0, 2, 1)) +
+  gtheme + 
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Patient's index") +
+  ylab("Median H-score") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = seq(0, 300, 50))
+descriptive.numerical(data$PDL1_H_median)
+# PDL1_H_max
+ggplot(data, aes(x = PDL1_H_max, fill = factor(0))) +
+  geom_histogram(color = "black", binwidth = 10) +
+  ggtitle("Maximum H-score of PDL1 expression in tumor cells") +
+  scale_x_continuous(breaks = seq(0, 300, 50)) +
+  scale_y_continuous(breaks = seq(0, 100, 10)) +
+  ylab("No. patients") +
+  gtheme + 
+  theme(
+    legend.position = "none",
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Maximum H-score")
+ggplot(data, aes(x = seq_along(PDL1_H_max), y = PDL1_H_max)) +
+  geom_ribbon(
+    aes(ymin = 0, ymax = quantile(PDL1_H_max, .95)), alpha = .3) +
+  geom_point(
+    shape = 1, color = ifelse(data$PDL1_H_max == 0, 2, 1)) +
+  gtheme + 
+  theme(
+    axis.title.x = element_text(color = "black", size = 16, vjust = -.5)
+    ) +
+  xlab("Patient's index") +
+  ylab("Maximum H-score") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = seq(0, 300, 50))
+descriptive.numerical(data$PDL1_H_max)
+# PDL1_pos_1_median
+ggplot(data, aes(x = PDL1_pos_1_median, fill = PDL1_pos_1_median)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 75), breaks = seq(0, 75, 10)) +
+  ggtitle("Distribution by PDL1 positivity \n(cutoff: median 1% tumor cells per TMAs)") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$PDL1_pos_1_median)
+# PDL1_pos_1_max
+ggplot(data, aes(x = PDL1_pos_1_max, fill = PDL1_pos_1_max)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 65), breaks = seq(0, 65, 10)) +
+  ggtitle("Distribution by PDL1 positivity \n(cutoff: maximum 1% tumor cells per TMAs)") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$PDL1_pos_1_max)
+# PDL1_pos_5_median
+ggplot(data, aes(x = PDL1_pos_5_median, fill = PDL1_pos_5_median)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 90), breaks = seq(0, 90, 10)) +
+  ggtitle("Distribution by PDL1 positivity \n(cutoff: median 5% tumor cells per TMAs)") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$PDL1_pos_5_median)
+# PDL1_pos_5_max
+ggplot(data, aes(x = PDL1_pos_5_max, fill = PDL1_pos_5_max)) +
+  geom_bar(color = "black") +
+  scale_y_continuous(limits = c(0, 85), breaks = seq(0, 85, 10)) +
+  ggtitle("Distribution by PDL1 positivity \n(cutoff: maximum 5% tumor cells per TMAs)") +
+  ylab("No. patients") +
+  gtheme + theme(legend.position = "none")
+descriptive.categorical(data$PDL1_pos_5_max)
+```
+
