@@ -158,10 +158,10 @@ data_PDL1_tumor <- data1 %>%
     ) %>%
   # Creating PDL1 positive variables using 1% and 5% cutoff points
   mutate(
-    PDL1_pos_1_median = ifelse(PDL1_median > 1, "Yes", "No"),
-    PDL1_pos_1_max = ifelse(PDL1_max > 1, "Yes", "No"),
-    PDL1_pos_5_median = ifelse(PDL1_median > 5, "Yes", "No"),
-    PDL1_pos_5_max = ifelse(PDL1_max > 5, "Yes", "No")
+    PDL1_pos_1_median = ifelse(PDL1_median > 1, "PDL1 positive", "PDL1 negative"),
+    PDL1_pos_1_max = ifelse(PDL1_max > 1, "PDL1 positive", "PDL1 negative"),
+    PDL1_pos_5_median = ifelse(PDL1_median > 5, "PDL1 positive", "PDL1 negative"),
+    PDL1_pos_5_max = ifelse(PDL1_max > 5, "PDL1 positive", "PDL1 negative")
   )
 
 # Merging the PDL1 in tumor dataset with the dataset containing the clinicopathologic and outcome features
