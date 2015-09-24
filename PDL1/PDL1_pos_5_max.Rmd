@@ -10,7 +10,7 @@ output:
 ```{r Data, echo = FALSE, message = FALSE, warning = FALSE}
 # Establishing global options
 library(knitr)
-options(knitr.table.format = "html")
+options(knitr.table.format = "markdown")
 opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 # Loading dataset
 data <- dget("PDL1_tumor.Rd")
@@ -89,8 +89,8 @@ p <- with(data, fisher.test(outcome, location)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = location, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 35), breaks = seq(0, 35, 10)) +
-  annotate("text", x = 2, y = 35, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 45), breaks = seq(0, 45, 10)) +
+  annotate("text", x = 2, y = 45, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by tumor location") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -101,8 +101,8 @@ p <- with(data, fisher.test(outcome, pt)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = pt, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 35), breaks = seq(0, 40, 10)) +
-  annotate("text", x = 3, y = 35, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 45), breaks = seq(0, 45, 10)) +
+  annotate("text", x = 3, y = 45, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by pT stages") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -112,8 +112,8 @@ p <- with(data, fisher.test(outcome, high_pt)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = high_pt, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 40), breaks = seq(0, 40, 10)) +
-  annotate("text", x = 1.5, y = 40, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 50), breaks = seq(0, 50, 10)) +
+  annotate("text", x = 1.5, y = 50, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by high pT stage") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -123,8 +123,8 @@ p <- with(data, fisher.test(outcome, grade)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = grade, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 35), breaks = seq(0, 35, 10)) +
-  annotate("text", x = 2, y = 35, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 50), breaks = seq(0, 50, 10)) +
+  annotate("text", x = 2, y = 50, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by histologic grades") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -134,8 +134,8 @@ p <- with(data, fisher.test(outcome, high_grade)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = high_grade, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
-  annotate("text", x = 1.5, y = 60, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 80), breaks = seq(0, 80, 10)) +
+  annotate("text", x = 1.5, y = 80, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by high histologic grade") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -146,8 +146,8 @@ p <- with(data_nona, fisher.test(outcome, lymph)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data_nona, aes(x = lymph, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 55), breaks = seq(0, 55, 10)) +
-  annotate("text", x = 1.5, y = 55, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 80), breaks = seq(0, 80, 10)) +
+  annotate("text", x = 1.5, y = 80, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by lymph node metastasis") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -157,8 +157,8 @@ p <- with(data, fisher.test(outcome, lvi)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = lvi, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 45), breaks = seq(0, 45, 10)) +
-  annotate("text", x = 1.5, y = 45, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
+  annotate("text", x = 1.5, y = 60, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by lymphovascular invasion") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -169,8 +169,8 @@ p <- with(data_nona, fisher.test(outcome, BTrecurrence)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data_nona, aes(x = BTrecurrence, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 45), breaks = seq(0, 45, 10)) +
-  annotate("text", x = 1.5, y = 45, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
+  annotate("text", x = 1.5, y = 60, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by local tumor recurrence") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -181,8 +181,8 @@ p <- with(data_nona, fisher.test(outcome, progression)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data_nona, aes(x = progression, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 35), breaks = seq(0, 35, 10)) +
-  annotate("text", x = 1.5, y = 35, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 50), breaks = seq(0, 50, 10)) +
+  annotate("text", x = 1.5, y = 50, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by tumor progression") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -205,8 +205,8 @@ p <- with(data, fisher.test(outcome, dod)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = dod, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 45), breaks = seq(0, 45, 10)) +
-  annotate("text", x = 1.5, y = 45, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 70), breaks = seq(0, 70, 10)) +
+  annotate("text", x = 1.5, y = 70, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by cancer-related death") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
@@ -219,7 +219,7 @@ with(data, gsurv(fu_mo, dod, outcome)) +
   ylab("Survival") +
   xlab("Follow-up, months") +
   scale_x_continuous(breaks = seq(0, 180, 24)) +
-  annotate("text", label = paste("P value =", p), x = 25, y = .6) +
+  annotate("text", label = paste("P value =", p), x = 25, y = .3) +
   theme(legend.position = c(.875, .875))
 ```
 
