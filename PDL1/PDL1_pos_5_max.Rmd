@@ -10,7 +10,7 @@ output:
 ```{r Data, echo = FALSE, message = FALSE, warning = FALSE}
 # Establishing global options
 library(knitr)
-options(knitr.table.format = "markdown")
+options(knitr.table.format = "html")
 opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 # Loading dataset
 data <- dget("PDL1_tumor.Rd")
@@ -65,8 +65,8 @@ p <- with(data, fisher.test(outcome, gender)$p.value)
 p <- format(p, digits = 2, scientific = TRUE, justify = "centre")
 ggplot(data, aes(x = gender, fill = outcome)) +
   geom_bar(position = position_dodge(), color = "black") +
-  scale_y_continuous(limits = c(0, 45), breaks = seq(0, 45, 10)) +
-  annotate("text", x = 1.5, y = 45, label = paste("P value =", p)) +
+  scale_y_continuous(limits = c(0, 60), breaks = seq(0, 60, 10)) +
+  annotate("text", x = 1.5, y = 60, label = paste("P value =", p)) +
   ggtitle("PDL1 positivity by patients' sex") +
   ylab("No. patients") +
   gtheme + theme(legend.title = element_blank())
