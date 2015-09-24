@@ -1,115 +1,114 @@
-# PDL1 positivity, median 1%
+# PDL1 positivity, maximum 5%
 
 
 
 
 
-
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-1.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-1.png) 
 
 |       | PDL1 negative |  %   | PDL1 positive |  %   |
 |:------|:-------------:|:----:|:-------------:|:----:|
-|Female |      25       | 33.3 |      14       | 58.3 |
-|Male   |      50       | 66.7 |      10       | 41.7 |
+|Female |      31       | 36.9 |       8       | 53.3 |
+|Male   |      53       | 63.1 |       7       | 46.7 |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-2.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-2.png) 
 
 |                    | PDL1 negative | PDL1 positive |
 |:-------------------|:-------------:|:-------------:|
-|Mean                |     69.7      |     70.9      |
-|Standard Deviation  |      9.0      |      8.8      |
+|Mean                |     70.0      |     69.9      |
+|Standard Deviation  |      9.2      |      7.8      |
 |Median              |     71.0      |     72.0      |
-|Interquartile Range |     11.5      |      9.0      |
+|Interquartile Range |     12.2      |      7.0      |
 |Minimum             |     48.0      |     51.0      |
-|Maximum             |     87.0      |     84.0      |
+|Maximum             |     87.0      |     81.0      |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-3.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-3.png) 
 
 |              | PDL1 negative |  %   | PDL1 positive |  %   |
 |:-------------|:-------------:|:----:|:-------------:|:----:|
-|Pelvis        |      34       | 45.3 |      11       | 45.8 |
-|Pelvis-Ureter |       2       | 2.7  |       2       | 8.3  |
-|Ureter        |      39       | 52.0 |      11       | 45.8 |
+|Pelvis        |      39       | 46.4 |       6       | 40.0 |
+|Pelvis-Ureter |       3       | 3.6  |       1       | 6.7  |
+|Ureter        |      42       | 50.0 |       8       | 53.3 |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-4.png) 
-
-|    | PDL1 negative |  %   | PDL1 positive |  %   |
-|:---|:-------------:|:----:|:-------------:|:----:|
-|pTa |      14       | 18.7 |       5       | 20.8 |
-|pT1 |      14       | 18.7 |       4       | 16.7 |
-|pT2 |       7       | 9.3  |       1       | 4.2  |
-|pT3 |      37       | 49.3 |      11       | 45.8 |
-|pT4 |       3       | 4.0  |       3       | 12.5 |
-
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-5.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-4.png) 
 
 |    | PDL1 negative |  %   | PDL1 positive |  %   |
 |:---|:-------------:|:----:|:-------------:|:----:|
-|No  |      35       | 46.7 |      10       | 41.7 |
-|Yes |      40       | 53.3 |      14       | 58.3 |
+|pTa |      17       | 20.2 |       2       | 13.3 |
+|pT1 |      16       | 19.0 |       2       | 13.3 |
+|pT2 |       8       | 9.5  |       0       | 0.0  |
+|pT3 |      41       | 48.8 |       7       | 46.7 |
+|pT4 |       2       | 2.4  |       4       | 26.7 |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-6.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-5.png) 
+
+|    | PDL1 negative |  %   | PDL1 positive |  %   |
+|:---|:-------------:|:----:|:-------------:|:----:|
+|No  |      41       | 48.8 |       4       | 26.7 |
+|Yes |      43       | 51.2 |      11       | 73.3 |
+
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-6.png) 
 
 |        | PDL1 negative |  %   | PDL1 positive |  %   |
 |:-------|:-------------:|:----:|:-------------:|:----:|
-|Grade 1 |       7       | 9.3  |       0       | 0.0  |
-|Grade 2 |      30       | 40.0 |       9       | 37.5 |
-|Grade 3 |      38       | 50.7 |      15       | 62.5 |
+|Grade 1 |       7       | 8.3  |       0       | 0.0  |
+|Grade 2 |      34       | 40.5 |       5       | 33.3 |
+|Grade 3 |      43       | 51.2 |      10       | 66.7 |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-7.png) 
-
-|    | PDL1 negative |  %   | PDL1 positive |  %   |
-|:---|:-------------:|:----:|:-------------:|:----:|
-|No  |      11       | 14.7 |       4       | 16.7 |
-|Yes |      64       | 85.3 |      20       | 83.3 |
-
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-8.png) 
-
-|    | PDL1 negative |  %   | PDL1 positive |  %   |
-|:---|:-------------:|:----:|:-------------:|:----:|
-|No  |      63       | 87.5 |      21       | 87.5 |
-|Yes |       9       | 12.5 |       3       | 12.5 |
-
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-9.png) 
-
-|    | PDL1 negative | %  | PDL1 positive |  %   |
-|:---|:-------------:|:--:|:-------------:|:----:|
-|No  |      45       | 60 |      14       | 58.3 |
-|Yes |      30       | 40 |      10       | 41.7 |
-
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-10.png) 
-
-|    | PDL1 negative |  %   | PDL1 positive |  %   |
-|:---|:-------------:|:----:|:-------------:|:----:|
-|No  |      49       | 67.1 |      16       | 66.7 |
-|Yes |      24       | 32.9 |       8       | 33.3 |
-
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-11.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-7.png) 
 
 |    | PDL1 negative |  %   | PDL1 positive | %  |
 |:---|:-------------:|:----:|:-------------:|:--:|
-|No  |      25       | 39.7 |       9       | 45 |
-|Yes |      38       | 60.3 |      11       | 55 |
+|No  |      12       | 14.3 |       3       | 20 |
+|Yes |      72       | 85.7 |      12       | 80 |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-12.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-8.png) 
+
+|    | PDL1 negative |  %   | PDL1 positive |  %   |
+|:---|:-------------:|:----:|:-------------:|:----:|
+|No  |      73       | 90.1 |      11       | 73.3 |
+|Yes |       8       | 9.9  |       4       | 26.7 |
+
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-9.png) 
+
+|    | PDL1 negative |  %   | PDL1 positive | %  |
+|:---|:-------------:|:----:|:-------------:|:--:|
+|No  |      53       | 63.1 |       6       | 40 |
+|Yes |      31       | 36.9 |       9       | 60 |
+
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-10.png) 
+
+|    | PDL1 negative |  %   | PDL1 positive | %  |
+|:---|:-------------:|:----:|:-------------:|:--:|
+|No  |      53       | 64.6 |      12       | 80 |
+|Yes |      29       | 35.4 |       3       | 20 |
+
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-11.png) 
+
+|    | PDL1 negative |  %   | PDL1 positive |  %   |
+|:---|:-------------:|:----:|:-------------:|:----:|
+|No  |      29       | 40.8 |       5       | 41.7 |
+|Yes |      42       | 59.2 |       7       | 58.3 |
+
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-12.png) 
 
 |                    | PDL1 negative | PDL1 positive |
 |:-------------------|:-------------:|:-------------:|
-|Mean                |     51.8      |     64.2      |
-|Standard Deviation  |     37.9      |     45.3      |
-|Median              |     45.0      |     56.0      |
-|Interquartile Range |     51.5      |     61.0      |
+|Mean                |     55.3      |     51.9      |
+|Standard Deviation  |     39.6      |     43.2      |
+|Median              |     47.5      |     44.0      |
+|Interquartile Range |     54.2      |     71.5      |
 |Minimum             |      3.0      |      4.0      |
-|Maximum             |     146.0     |     173.0     |
+|Maximum             |     173.0     |     158.0     |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-13.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-13.png) 
 
-|    | PDL1 negative | %  | PDL1 positive | %  |
-|:---|:-------------:|:--:|:-------------:|:--:|
-|No  |      51       | 68 |      18       | 75 |
-|Yes |      24       | 32 |       6       | 25 |
+|    | PDL1 negative |  %   | PDL1 positive |  %   |
+|:---|:-------------:|:----:|:-------------:|:----:|
+|No  |      61       | 72.6 |       8       | 53.3 |
+|Yes |      23       | 27.4 |       7       | 46.7 |
 
-![](PDL1_pos_1_median_files/figure-html/PDL1_pos_1_median-14.png) 
+![](PDL1_pos_5_max_files/figure-html/PDL1_pos_5_max-14.png) 
 
 
 
@@ -124,7 +123,7 @@
 |High histologic grade             | 7.38  |     1.38     |    137.08     |  0.059  |
 |Lymph node metastasis             | 3.71  |     1.08     |     13.69     |  0.039  |
 |Lymphovascular invasion           | 7.79  |     3.06     |     21.66     | 3.4e-05 |
-|PDL1 positivity                   | 0.71  |     0.23     |     1.93      |  0.52   |
+|PDL1 positivity                   | 2.32  |     0.74     |     7.20      |  0.14   |
 
 # Odds ratios for tumor progression
 
@@ -137,7 +136,7 @@
 |High histologic grade             | 3e+08 |   9.7e-40    |      NA       |  0.99   |
 |Lymph node metastasis             | 3.12  |     0.72     |     21.65     |  0.17   |
 |Lymphovascular invasion           | 3.99  |     1.56     |     11.06     | 0.0053  |
-|PDL1 positivity                   | 0.80  |     0.29     |     2.26      |  0.67   |
+|PDL1 positivity                   | 0.97  |     0.28     |     3.54      |  0.96   |
 
 # Odds ratios for cancer-related death
 
@@ -150,7 +149,7 @@
 |High histologic grade             | 7.38  |     1.38     |    137.08     |  0.059  |
 |Lymph node metastasis             | 3.71  |     1.08     |     13.69     |  0.039  |
 |Lymphovascular invasion           | 7.79  |     3.06     |     21.66     | 3.4e-05 |
-|PDL1 positivity                   | 0.71  |     0.23     |     1.93      |  0.52   |
+|PDL1 positivity                   | 2.32  |     0.74     |     7.20      |  0.14   |
 
 # Hazard ratios for cancer-related death
 
@@ -163,5 +162,5 @@
 |High histologic grade             | 7.79  |     0.13     |     1.06      | 0.0045  |
 |Lymph node metastasis             | 2.76  |     0.36     |     1.18      |  0.033  |
 |Lymphovascular invasion           | 5.64  |     0.18     |     2.50      | 6.1e-06 |
-|PDL1 positivity                   | 0.67  |     1.49     |     0.27      |  0.37   |
+|PDL1 positivity                   | 1.78  |     0.56     |     0.76      |   0.2   |
 
