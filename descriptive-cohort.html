@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Cohort features</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PFCK in UTUC</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Descriptive analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="descriptive-cohort.html">Cohort features</a>
+    </li>
+    <li>
+      <a href="descriptive-markers.html">Markers features</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Association analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">PD-L1 expression</li>
+    <li class="divider"></li>
+    <li>
+      <a href="association-pdl1-tumor.html">Positivity in tumor cells</a>
+    </li>
+    <li>
+      <a href="association-pdl1-h.html">H-score of tumor cells</a>
+    </li>
+    <li>
+      <a href="association-pdl1-stroma.html">Positivity in stromal lymphocytes</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">FOXP3 expression</li>
+    <li class="divider"></li>
+    <li>
+      <a href="association-foxp3-lymph-tumor.html">Positivity in intratumoral lymphocytes</a>
+    </li>
+    <li>
+      <a href="association-foxp3-lymph-stroma.html">Positivity in stromal lymphocytes</a>
+    </li>
+    <li>
+      <a href="association-foxp3-tumor.html">Positivity in tumor cells</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CD8-Ki67 expression</li>
+    <li class="divider"></li>
+    <li>
+      <a href="association-cd8-tumor.html">CD8 positivity in intratumoral lymphocytes</a>
+    </li>
+    <li>
+      <a href="association-cd8ki67-tumor.html">CD8-Ki67 positivity in intratumoral lymphocytes</a>
+    </li>
+    <li>
+      <a href="association-cd8-stroma.html">CD8 positivity in stromal lymphocytes</a>
+    </li>
+    <li>
+      <a href="association-cd8ki67-stroma.html">CD8-Ki67 positivity in stromal lymphocytes</a>
+    </li>
+    <li>
+      <a href="association-ki67-tumor.html">Ki67 positivity in intratumoral lymphocytes</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Outcome analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="outcome-regression.html">Regression models</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">PD-L1 expression</li>
+    <li class="divider"></li>
+    <li>
+      <a href="survival-pdl1-tumor.html">Positivity in tumor cells</a>
+    </li>
+    <li>
+      <a href="survival-pdl1-h.html">H-score of tumor cells</a>
+    </li>
+    <li>
+      <a href="survival-pdl1-stroma.html">Positivity in stromal lymphocytes</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">FOXP3 expression</li>
+    <li class="divider"></li>
+    <li>
+      <a href="survival-foxp3-lymph-tumor.html">Positivity in intratumoral lymphocytes</a>
+    </li>
+    <li>
+      <a href="survival-foxp3-lymph-stroma.html">Positivity in stromal lymphocytes</a>
+    </li>
+    <li>
+      <a href="survival-foxp3-tumor.html">Positivity in tumor cells</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CD8-Ki67 expression</li>
+    <li class="divider"></li>
+    <li>
+      <a href="survival-cd8-tumor.html">CD8 positivity in intratumoral lymphocytes</a>
+    </li>
+    <li>
+      <a href="survival-cd8ki67-tumor.html">CD8-Ki67 positivity in intratumoral lymphocytes</a>
+    </li>
+    <li>
+      <a href="survival-cd8-stroma.html">CD8 positivity in stromal lymphocytes</a>
+    </li>
+    <li>
+      <a href="survival-cd8ki67-stroma.html">CD8-Ki67 positivity in stromal lymphocytes</a>
+    </li>
+    <li>
+      <a href="survival-ki67-tumor.html">Ki67 positivity in intratumoral lymphocytes</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Cohort features</h1>
+
+</div>
+
+
+<p>In this section, we describe the clinicopathologic and outcome features of the 99 patients included in the cohort.</p>
+<hr />
+<div id="clinical-features" class="section level1">
+<h1><strong>Clinical features</strong></h1>
+<div id="patients-age-in-years" class="section level2">
+<h2>Patient’s age, in years</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td align="center">70</td>
+</tr>
+<tr class="even">
+<td>Standard deviation</td>
+<td align="center">8.9</td>
+</tr>
+<tr class="odd">
+<td>Median</td>
+<td align="center">71</td>
+</tr>
+<tr class="even">
+<td>Interquartile range</td>
+<td align="center">11.5</td>
+</tr>
+<tr class="odd">
+<td>Mininum</td>
+<td align="center">48</td>
+</tr>
+<tr class="even">
+<td>Maximum</td>
+<td align="center">87</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/age-1.png" width="672" /><img src="descriptive-cohort_files/figure-html/age-2.png" width="672" /></p>
+<hr />
+</div>
+<div id="patients-sex" class="section level2">
+<h2>Patient’s sex</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td align="center">39 (39)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td align="center">60 (61)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/sex-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="pathologic-features" class="section level1">
+<h1><strong>Pathologic features</strong></h1>
+<div id="tumor-location" class="section level2">
+<h2>Tumor location</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ureter</td>
+<td align="center">50 (51)</td>
+</tr>
+<tr class="even">
+<td>Pelvis</td>
+<td align="center">45 (45)</td>
+</tr>
+<tr class="odd">
+<td>Pelvis-Ureter</td>
+<td align="center">4 (4)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/location-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="pt" class="section level2">
+<h2>pT</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pTa</td>
+<td align="center">19 (19)</td>
+</tr>
+<tr class="even">
+<td>pT1</td>
+<td align="center">18 (18)</td>
+</tr>
+<tr class="odd">
+<td>pT2</td>
+<td align="center">8 (8)</td>
+</tr>
+<tr class="even">
+<td>pT3</td>
+<td align="center">48 (48)</td>
+</tr>
+<tr class="odd">
+<td>pT4</td>
+<td align="center">6 (6)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/pt-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="histologic-grade" class="section level2">
+<h2>Histologic grade</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Grade 1</td>
+<td align="center">7 (7)</td>
+</tr>
+<tr class="even">
+<td>Grade 2</td>
+<td align="center">39 (39)</td>
+</tr>
+<tr class="odd">
+<td>Grade 3</td>
+<td align="center">53 (54)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/grade-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="lymphovascular-invasion" class="section level2">
+<h2>Lymphovascular invasion</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td align="center">59 (60)</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td align="center">40 (40)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/lvi-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="lymph-node-metastasis" class="section level2">
+<h2>Lymph node metastasis</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td align="center">84 (88)</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td align="center">12 (12)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/lymph-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="outcome-features" class="section level1">
+<h1><strong>Outcome features</strong></h1>
+<div id="follow-up-in-months" class="section level2">
+<h2>Follow-up, in months</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td align="center">54.8</td>
+</tr>
+<tr class="even">
+<td>Standard deviation</td>
+<td align="center">39.9</td>
+</tr>
+<tr class="odd">
+<td>Median</td>
+<td align="center">47</td>
+</tr>
+<tr class="even">
+<td>Interquartile range</td>
+<td align="center">56.5</td>
+</tr>
+<tr class="odd">
+<td>Mininum</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td>Maximum</td>
+<td align="center">173</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/fu_mo-1.png" width="672" /><img src="descriptive-cohort_files/figure-html/fu_mo-2.png" width="672" /></p>
+<hr />
+</div>
+<div id="bladder-recurrence" class="section level2">
+<h2>Bladder recurrence</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td align="center">65 (67)</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td align="center">32 (33)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/recurrence_bladder-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="tumor-progression" class="section level2">
+<h2>Tumor progression</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td align="center">34 (41)</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td align="center">49 (59)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/progression-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="final-outcome" class="section level2">
+<h2>Final outcome</h2>
+<table>
+<caption>Summary table</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">No. Cases (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AWD</td>
+<td align="center">5 (5)</td>
+</tr>
+<tr class="even">
+<td>DOC</td>
+<td align="center">3 (3)</td>
+</tr>
+<tr class="odd">
+<td>DOD</td>
+<td align="center">30 (30)</td>
+</tr>
+<tr class="even">
+<td>LFU</td>
+<td align="center">23 (23)</td>
+</tr>
+<tr class="odd">
+<td>NED</td>
+<td align="center">38 (38)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="descriptive-cohort_files/figure-html/outcome-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
